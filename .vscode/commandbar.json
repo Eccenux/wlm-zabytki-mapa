@@ -1,0 +1,33 @@
+// Requires `gsppvo.vscode-commandbar`.
+// Also: in settings (UI), `files.associations`, add `commandbar.json: jsonc` (json with comments).
+{
+	// "skipTerminateQuickPick": true,
+	"skipSwitchToOutput": false,
+	"skipErrorMessage": true,
+	"commands": [
+		{
+			"text": "build",
+			"tooltip": "Build the app.",
+			"color": "lightgreen",
+			"commandType": "exec",
+			"command": "C:\\Windows\\System32\\cmd.exe  /c npm run build",
+			"priority": 0
+		},
+		// {
+		// 	"text": "build-watch",
+		// 	"tooltip": "Build the app.",
+		// 	"color": "lightgreen",
+		// 	"commandType": "script",
+		// 	"command": "start",
+		// 	"priority": 0
+		// },
+		{
+			"text": "npm up",
+			"tooltip": "Update deps.",
+			"color": "yellow",
+			"commandType": "exec",
+			"command": "npm up",
+			"priority": 0
+		}
+	]
+}
