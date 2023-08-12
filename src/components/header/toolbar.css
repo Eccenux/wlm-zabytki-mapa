@@ -1,0 +1,8 @@
+
+.md-toolbar-tools {
+  background: black;
+  color: white;
+}
+.md-toolbar-tools img.dark-logo {
+  filter: invert();
+}

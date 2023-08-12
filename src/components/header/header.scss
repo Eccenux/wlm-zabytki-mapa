@@ -1,5 +1,7 @@
 @import "../../styles/responsive";
 
+@import "toolbar.css";
+
 ww-header {
   .ww-header__main {
     min-height: 60px;
@@ -40,7 +42,8 @@ ww-header {
     height: 100%;
     border: 0;
     padding: 10px 15px;
-    background: transparent;
+    background: white;
+    color: gray;
     font-family: "Open Sans", sans-serif;
 
     &:focus {
