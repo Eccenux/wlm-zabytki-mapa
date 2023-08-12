@@ -65,8 +65,34 @@ const DataService = ($http, $q) => {
     });
   }
 
+  /**
+   * Monuments API query.
+   * 
+   * TODO: should optimize calls to this by using same bounds for many users.
+   * WD can cache things, but the cache will not work even with micro-changes (such as adding 0 at the of a coordinate).
+   * Maybe use S2 cells?
+   * https://s2geometry.io/devguide/s2cell_hierarchy.html
+   * Or just cut manually.
+   * 
+   * @param {Object} bounds Map rectangle corners.
+   * @param {Object} options Optional, extra API call options.
+   * @returns 
+   */
   function getMonuments(bounds, options) {
     const b = bounds;
+    /*
+      P1435 = status dobra kultury
+        wd:Q29940414	zabytek nieruchomy -- raczej wojewódzki rejestr
+        wd:Q21438156	zabytek w Polsce -- bardziej ogólne, można pominąć
+      
+      # filtr do nieruchomych
+      ?item wdt:P1435 wd:Q29940414 .
+      # pobranie statusu (można potem filtrować lub wyświetlić na liście zabytków)
+      ?item wdt:P1435 ?status .
+
+      # filtr podstawowy (istnienie P1435)
+      ?item p:P1435 ?monument .
+    */
     const query = `SELECT ?item ?itemLabel ?townLabel ?image ?coord ?category ?townCategory ?adminCategory WHERE {
       SERVICE wikibase:box {
       ?item wdt:P625 ?coord .
@@ -77,7 +103,7 @@ const DataService = ($http, $q) => {
       OPTIONAL { ?item wdt:P131 ?town . ?town wdt:P373 ?townCategory }
       OPTIONAL { ?item wdt:P131 ?town . ?town wdt:P131 ?admin . ?admin wdt:P373 ?adminCategory }
       OPTIONAL { ?item wdt:P18 ?image . }
-      ?item p:P1435 ?monument .
+      ?item wdt:P1435 wd:Q29940414 .
       OPTIONAL { ?item wdt:P31 ?type }
       OPTIONAL { ?item wdt:P373 ?category }
       SERVICE wikibase:label { bd:serviceParam wikibase:language "pl,en" }
