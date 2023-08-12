@@ -69,14 +69,14 @@ const config = {
           "sass-loader",
         ]
       },
-      {
-        test: /\.(woff|woff2|ttf|eot)$/,
-        loader: 'url-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'fonts/',
-        }
-      },
+      // {
+      //   test: /\.(woff|woff2|ttf|eot)$/,
+      //   loader: 'url-loader',
+      //   options: {
+      //     name: '[name].[ext]',
+      //     outputPath: 'fonts/',
+      //   }
+      // },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'file-loader',

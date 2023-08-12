@@ -6,7 +6,7 @@ import "leaflet.markercluster";
 import "angular-leaflet-directive";
 
 import "angular-material/angular-material.css";
-import "material-design-icons/iconfont/material-icons.css";
+// import "material-design-icons/iconfont/material-icons.css";
 import "leaflet/dist/leaflet.css";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";

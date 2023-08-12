@@ -43,7 +43,6 @@
     "style-loader": "3.x",
     "stylus": "0.x",
     "stylus-loader": "7.x",
-    "url-loader": "4.x",
     "webpack": "5.x",
     "webpack-cli": "5.x",
     "webpack-dev-server": "4.x"
@@ -60,7 +59,6 @@
     "jquery": "3.x",
     "leaflet": "1.x",
     "leaflet.markercluster": "1.x",
-    "material-design-icons": "3.x",
     "proj4": "2.x"
   }
 }
