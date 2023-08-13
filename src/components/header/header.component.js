@@ -26,6 +26,8 @@ function controller(
 
   vm.changeVersion = changeVersion;
   vm.clearSearch = clearSearch;
+  vm.activateSearch = activateSearch;
+  vm.deactivateSearch = deactivateSearch;
   vm.search = search;
   vm.showOnMap = showOnMap;
 
@@ -39,6 +41,12 @@ function controller(
   function clearSearch() {
     vm.searchInput = null;
     vm.searchResults = null;
+  }
+  function activateSearch() {
+    document.body.classList.add('search-wasactive');
+  }
+  function deactivateSearch() {
+    // document.body.classList.remove('search-active');
   }
 
   function search() {

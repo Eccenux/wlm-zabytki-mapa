@@ -14,15 +14,15 @@
     </a>
     <a href="https://wikimedia.pl/zabytki">
       <img
-        class="ww-header__logo"
+        class="ww-header__logo app-img-long"
         src="http://i.imgur.com/zOijb1h.png"
         alt="Wiki Lubi Zabytki"
       />
-      <!-- <img
-        class="ww-header__logo img-short"
+      <img
+        class="ww-header__logo app-img-short"
         src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Wiki_Loves_Monuments_Logo_notext.svg"
         alt="Wiki Lubi Zabytki"
-      /> -->
+      />
     </a>
     <span flex></span>
     <input
@@ -33,7 +33,8 @@
       placeholder="{{ ::$ctrl.text.SEARCH_PLACEHOLDER }}"
       ng-model="$ctrl.searchInput"
       ng-change="$ctrl.search()"
-      ng-focus="$ctrl.search()"
+      ng-focus="$ctrl.search(); $ctrl.activateSearch()"
+      ng-blur="$ctrl.deactivateSearch()"
       ng-model-options="{ debounce: 200 }"
     />
     <md-button

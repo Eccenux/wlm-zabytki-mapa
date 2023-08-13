@@ -36,6 +36,20 @@ ww-header {
       display: none;
     }
   }
+  .app-img-short {
+    display: none;
+  }
+  // hide long logo on small screen, but only when search was activated
+  @media (max-width: 500px) {
+    .search-wasactive & {
+      .app-img-long {
+        display: none;
+      }
+      .app-img-short {
+        display: inline-block;
+      }
+    }
+  }
 
   .ww-header__title {
     color: #1d1d1d;
