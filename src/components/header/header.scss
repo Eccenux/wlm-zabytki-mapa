@@ -20,9 +20,20 @@ ww-header {
     margin-left: 10px;
     margin-right: 10px;
 
-    @include x-small {
-      margin-right: 5px;
-      margin-left: 5px;
+    &.img-short {
+      @media (min-width: 890px) {
+        display: none;
+      }
+    }
+    &.img-long {
+      @media (max-width: 891px) {
+        display: none;
+      }
+    }
+  }
+  a.wikimedia {
+    @media (max-width: 700px) {
+      display: none;
     }
   }
 
