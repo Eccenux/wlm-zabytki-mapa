@@ -36,15 +36,18 @@ const config = {
   ],
   module: {
     rules: [
-      // {
-      //   test: /\.jsx?$/,
-      //   exclude: /node_modules/,
-      //   loader: "babel",
-      //   query: {
-      //     plugins: ["transform-runtime"],
-      //     presets: ["es2015", "stage-2"]
-      //   }
-      // },
+      {
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+          presets: [
+            ['@babel/preset-env', { targets: "defaults" }]
+          ]
+          }
+        }
+      },
       // {
       //   test: /\.jsx?$/,
       //   exclude: /node_modules/,
