@@ -82,12 +82,14 @@ function controller(
     // eslint-disable-next-line no-undef
     navigator.geolocation.getCurrentPosition((position) => {
       // map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+      // console.log('pos:', position.coords);
       vm.map.center = {
         lat: parseFloat(position.coords.latitude),
         lng: parseFloat(position.coords.longitude),
         zoom: 14
       };
       postionWaiting = false;
+      $scope.$apply();
     }, (error) => {
       console.error(error);
       postionWaiting = false;
