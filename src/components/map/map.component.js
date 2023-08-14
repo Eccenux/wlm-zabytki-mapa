@@ -241,8 +241,9 @@ function controller(
     const aHasImage = typeof a.image === 'string';
     const bHasImage = typeof b.image === 'string';
     if ((aHasImage && bHasImage) || (!aHasImage && !bHasImage)) {
-        const aName = a.name ? a.name : '';
-        const bName = b.name ? b.name : '';
+        const name = (o) => `${o.town ? o.town : 'żż'}, ${o.name ? o.name : ''}`;
+        const aName = name(a);
+        const bName = name(b);
         return aName.localeCompare(bName);
     }
     if (aHasImage) {
