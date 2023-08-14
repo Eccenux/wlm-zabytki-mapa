@@ -15,6 +15,7 @@ function controller(
   $rootScope,
   $scope,
   $window,
+  $timeout,
   mapService,
   textService,
   versionService
@@ -57,7 +58,15 @@ function controller(
   // functions
 
   function scrollToId(item) {
+    // scroll around the card
     vm.topIndex = vm.cards.indexOf(item);
+    // scroll top of the card to view
+    $timeout(() => {
+      const active = $window.document.querySelector('.ww-card-active');
+      if (active) {
+        active.scrollIntoView(true);
+      }
+    }, 50);
   }
 
   function uploadExtra() {
