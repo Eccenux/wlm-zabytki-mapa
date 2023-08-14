@@ -1,7 +1,25 @@
 @import "../../styles/responsive";
+@import "card.css";
 
 ww-card {
   width: 100%;
+
+  .md-button {
+    text-overflow: ellipsis;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  md-card {
+    display: block;    
+  }
+  .ww-card__image {
+    float: left;
+  }
+  .buttons-group {
+    display: flex;
+    justify-content: right;
+    // clear: both;
+  }
 
   .ww-card {
     margin: 10px;

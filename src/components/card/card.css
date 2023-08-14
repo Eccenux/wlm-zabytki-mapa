@@ -1,0 +1,15 @@
+.ww-card__upload {
+  min-width: min-content;
+  box-sizing: border-box;
+}
+.ww-card {
+  container-type: inline-size;
+}
+@container (max-width: 360px) {
+  .ww-card .buttons-group {
+    clear: both;
+  }
+  .ww-card__upload {
+    min-width: 30px;
+  }
+}
