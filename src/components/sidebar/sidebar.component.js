@@ -29,6 +29,8 @@ function controller(
   vm.version = versionService.getVersion();
 
   vm.uploadExtra = uploadExtra;
+  vm.currentPosition = currentPosition;
+  vm.loadingPosition = loadingPosition;
 
   // init
 
@@ -65,6 +67,29 @@ function controller(
     const url = `${uploadUrl}${campaigns[vm.version]}`;
     $window.open(url, "_blank");
   }
+
+  function currentPosition() {
+    postionWaiting = true;
+    // eslint-disable-next-line no-undef
+    navigator.geolocation.getCurrentPosition((position) => {
+      // map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+      vm.map.center = {
+        lat: parseFloat(position.coords.latitude),
+        lng: parseFloat(position.coords.longitude),
+        zoom: 14
+      };
+      postionWaiting = false;
+    }, (error) => {
+      console.error(error);
+      postionWaiting = false;
+    });
+  }
+
+  let postionWaiting = false;
+  function loadingPosition() {
+    return postionWaiting;
+  }
+
 }
 
 export default () => {

@@ -2,7 +2,13 @@
 
 ww-sidebar {
   position: relative;
-  background: #ededed; // #fafafa;
+  background: white;
+
+  display: flex;
+  flex-direction: column;
+  .ww-cards {
+    flex: 1;
+  }
 
   @include x-small {
     height: 200px;
@@ -25,7 +31,6 @@ ww-sidebar {
   .ww-cards {
     overflow: auto;
     width: 100%;
-    height: calc(100vh - 126px);
     background: #ededed;
 
     @include x-small {
@@ -37,7 +42,6 @@ ww-sidebar {
     z-index: 5;
     position: absolute;
     width: 100%;
-    height: calc(100vh - 186px);
     background: #ededed;
 
     @include x-small {
@@ -46,21 +50,41 @@ ww-sidebar {
   }
 
   .ww-sidebar-options {
+    border-top: 4px solid #ddd;
     width: 100%;
-    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    gap: .5em;
+    flex-direction: column;
+    font-weight: bold;
+    // & > * {
+    //   margin: 0;
+    //   padding: 0;
+    // }
+    md-switch {
+      margin-left: 1em;
 
-    md-list-item {
-      background: white;
-      border-top: 4px solid #ddd;
-      font-weight: 600;
+      white-space: normal;
+      display: flex;
+      gap: .7em;
+      .md-container {
+        width: 35px;
+        flex-shrink: 0;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
     }
   }
 
-  .ww-card__upload-extra {
-    width: calc(100% - 16px);
-    margin-bottom: 10px;
-    margin-top: 10px;
-    padding: 5px;
-    font-weight: bold;
+  .ww-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    .md-button {
+      min-width: 0;
+      text-align: left;
+    }
   }
 }
