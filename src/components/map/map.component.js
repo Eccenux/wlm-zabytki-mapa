@@ -1,3 +1,5 @@
+/* eslint-disable angular/typecheck-string */
+/* eslint-disable angular/typecheck-object */
 import "./map.scss";
 import template from "./map.html";
 
@@ -169,8 +171,35 @@ function controller(
       .then(
         data => {
           vm.loading.active -= 1;
+          const cards = transofrmMonuments(data.data.results);
+          vm.cards = cards || [];
+          mapService.clearMarkers();
+          vm.map.highlight = "";
 
-          const cards = data.data.results.bindings
+          if (!data) {
+            return;
+          }
+          cards.forEach(element => {
+            vm.map.markers[element.id] = setMarker(element);
+          });
+        },
+        () => {
+          vm.loading.active -= 1;
+          vm.cards = [];
+        }
+      )
+    ;
+  }
+
+  /**
+   * Transforma API data for the card component.
+   * @param {Object} results Successful results of API call.
+   * @returns Data for src\components\card\card.html
+   */
+  function transofrmMonuments(results) {
+    // console.log(results.bindings.map(o=>JSON.stringify(o.image)));
+    // console.log(results);
+    const cards = results.bindings
             .map(object => {
               const coord = object.coord.value
                 .replace("Point(", "")
@@ -198,24 +227,28 @@ function controller(
             .filter(
               (element, index, array) =>
                 array.findIndex(t => t.id === element.id) === index
-            );
+            )
+            .sort(sortMonuments)
+    ;
+    return cards;
+  }
 
-          vm.cards = cards || [];
-          mapService.clearMarkers();
-          vm.map.highlight = "";
-
-          if (!data) {
-            return;
-          }
-          cards.forEach(element => {
-            vm.map.markers[element.id] = setMarker(element);
-          });
-        },
-        () => {
-          vm.loading.active -= 1;
-          vm.cards = [];
-        }
-      );
+  /**
+   * Sort function for transformed monuments.
+   * @returns 1/-1/0
+   */
+  function sortMonuments(a, b) {
+    const aHasImage = typeof a.image === 'string';
+    const bHasImage = typeof b.image === 'string';
+    if ((aHasImage && bHasImage) || (!aHasImage && !bHasImage)) {
+        const aName = a.name ? a.name : '';
+        const bName = b.name ? b.name : '';
+        return aName.localeCompare(bName);
+    }
+    if (aHasImage) {
+      return 1;
+    }
+    return bHasImage ? -1 : 0;
   }
 
   function setMarker(element) {
