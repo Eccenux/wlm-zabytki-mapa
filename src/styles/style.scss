@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin-ext");
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+// Privacy safe and CSP compliant font proxy. Search: https://fontcdn.toolforge.org/
+@import url("https://tools-static.wmflabs.org/fontcdn/css?family=Open+Sans:400,600&subset=latin-ext");
+@import url("https://tools-static.wmflabs.org/fontcdn/css?family=Material+Icons");
 
 @import "scrollbar";
 @import "spinner";
