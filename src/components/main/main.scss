@@ -1,14 +1,54 @@
+@import "../../styles/responsive";
+
+ww-main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .ww-container {
+    flex: 1;
+  }
+}
+
+// loaded base
 .ww-container {
-  height: calc(100vh - 60px);
-
-  .ww-container__map--loading {
-    padding: 25px 10px;
-    color: #757575;
-    opacity: 0.5;
-    text-align: center;
-
-    .cssload-container {
-      height: 50px;
+  display: grid;
+  grid-template-columns: minmax(370px, 1fr) 2fr;
+  ww-map {
+    .angular-leaflet-map {
+      width: 100%;
+      height: 100%;
     }
+  }
+  @include x-small {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 16em;
+    grid-template-areas:
+      "map"
+      "sidebar"
+    ;
+    ww-map {
+      grid-area: map;
+    }
+    ww-sidebar {
+      grid-area: sidebar;
+    }
+  }
+}
+
+// loading
+.ww-map--loading {
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 25px 10px;
+  color: #757575;
+  opacity: 0.5;
+  text-align: center;
+
+  .cssload-container {
+    height: 50px;
   }
 }

@@ -10,10 +10,6 @@ ww-sidebar {
     flex: 1;
   }
 
-  @include x-small {
-    height: 200px;
-  }
-
   .ww-sidebar-info {
     padding: 25px 10px;
     color: #757575;
@@ -32,10 +28,6 @@ ww-sidebar {
     overflow: auto;
     width: 100%;
     background: #ededed;
-
-    @include x-small {
-      height: 200px;
-    }
   }
 
   .ww-cards--loading {
@@ -43,10 +35,6 @@ ww-sidebar {
     position: absolute;
     width: 100%;
     background: #ededed;
-
-    @include x-small {
-      height: 200px;
-    }
   }
 
   .ww-sidebar-options {
@@ -55,6 +43,9 @@ ww-sidebar {
     box-sizing: border-box;
     display: flex;
     gap: .5em;
+    @include x-small {
+      gap: 0;
+    }
     flex-direction: column;
     font-weight: bold;
     // & > * {
@@ -63,6 +54,8 @@ ww-sidebar {
     // }
     md-switch {
       margin-left: 1em;
+      margin-block: 0;
+      padding-block: .4em;
 
       white-space: normal;
       display: flex;
