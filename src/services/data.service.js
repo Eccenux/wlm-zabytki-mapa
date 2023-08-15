@@ -80,6 +80,8 @@ const DataService = ($http, $q) => {
    */
   function getMonuments(bounds, options) {
     const b = bounds;
+    // might increase performance (cache hits)
+    const reduceAccuracy = (d) => d.toFixed(5);
     /*
       P1435 = status dobra kultury
         wd:Q29940414	zabytek nieruchomy -- raczej wojewódzki rejestr
@@ -96,8 +98,8 @@ const DataService = ($http, $q) => {
     const query = `SELECT ?item ?itemLabel ?townLabel ?image ?coord ?category ?townCategory ?adminCategory WHERE {
       SERVICE wikibase:box {
       ?item wdt:P625 ?coord .
-        bd:serviceParam wikibase:cornerWest "Point(${b.southWest.lng} ${b.southWest.lat})"^^geo:wktLiteral .
-        bd:serviceParam wikibase:cornerEast "Point(${b.northEast.lng} ${b.northEast.lat})"^^geo:wktLiteral .
+        bd:serviceParam wikibase:cornerWest "Point(${reduceAccuracy(b.southWest.lng)} ${reduceAccuracy(b.southWest.lat)})"^^geo:wktLiteral .
+        bd:serviceParam wikibase:cornerEast "Point(${reduceAccuracy(b.northEast.lng)} ${reduceAccuracy(b.northEast.lat)})"^^geo:wktLiteral .
       }
       OPTIONAL { ?item wdt:P131 ?town . }
       OPTIONAL { ?item wdt:P131 ?town . ?town wdt:P373 ?townCategory }
