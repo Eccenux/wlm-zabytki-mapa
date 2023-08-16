@@ -5,14 +5,14 @@
 	"skipSwitchToOutput": false,
 	"skipErrorMessage": true,
 	"commands": [
-		{
-			"text": "build",
-			"tooltip": "Build the app.",
-			"color": "lightgreen",
-			"commandType": "exec",
-			"command": "C:\\Windows\\System32\\cmd.exe  /c npm run build",
-			"priority": 0
-		},
+		// {
+		// 	"text": "build",
+		// 	"tooltip": "Build the app.",
+		// 	"color": "lightgreen",
+		// 	"commandType": "exec",
+		// 	"command": "npm run build",
+		// 	"priority": 0
+		// },
 		// {
 		// 	"text": "build-watch",
 		// 	"tooltip": "Build the app.",
@@ -21,13 +21,13 @@
 		// 	"command": "start",
 		// 	"priority": 0
 		// },
-		{
-			"text": "npm up",
-			"tooltip": "Update deps.",
-			"color": "yellow",
-			"commandType": "exec",
-			"command": "npm up",
-			"priority": 0
-		}
+		// {
+		// 	"text": "npm up",
+		// 	"tooltip": "Update deps.",
+		// 	"color": "yellow",
+		// 	"commandType": "exec",
+		// 	"command": "npm up",
+		// 	"priority": 0
+		// }
 	]
 }
