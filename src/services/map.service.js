@@ -77,7 +77,7 @@ const MapService = versionService => {
               layerOptions: {
                 subdomains: ["a", "b", "c"],
                 attribution:
-                  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                  '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
                 continuousWorld: true,
                 maxNativeZoom: 18,
                 maxZoom: 21
@@ -90,7 +90,7 @@ const MapService = versionService => {
               layerOptions: {
                 subdomains: ["a", "b", "c"],
                 attribution:
-                  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                  '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
                 continuousWorld: false,
                 maxNativeZoom: 19,
                 maxZoom: 21

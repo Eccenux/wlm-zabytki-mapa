@@ -16,7 +16,7 @@
       ng-if="$ctrl.data.image"
       ng-click="$event.stopPropagation()"
       ng-href="https://commons.wikimedia.org/wiki/File:{{ $ctrl.data.image }}"
-      target="_blank"
+      target="_blank" rel="noopener"
     >
       <img
         class="card-photo"
@@ -71,8 +71,8 @@
     </md-button>
     <md-button
       class="ww-card__more"
-      ng-href="//www.wikidata.org/wiki/Q{{ $ctrl.data.id }}?uselang=pl"
-      target="_blank"
+      ng-href="https://www.wikidata.org/wiki/Q{{ $ctrl.data.id }}?uselang=pl"
+      target="_blank" rel="noopener"
       ng-if="$ctrl.version() === 'monuments' && $ctrl.data.id"
     >
       <md-icon>info</md-icon>
