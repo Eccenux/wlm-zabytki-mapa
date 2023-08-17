@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import "./card.scss";
 import template from "./card.html";
 
@@ -97,18 +98,25 @@ function controller(
 
   function getMonumentUploadUrl() {
     const description = [vm.data.town, vm.data.name].join(", ");
-    const category =
-      vm.data.category ||
-      `${
+    const basicCategory = "Cultural heritage monuments in Poland";  // worek ogólny (nieskategoryzowane)
+    let categories = vm.data.category;
+    if (!categories) {
+      categories = `${
         vm.data.category2 ||
         vm.data.category3 ||
-        "Cultural heritage monuments in Poland"
+        ""
       }`;
+      if (categories.length) {
+        categories += `|${basicCategory}`;
+      } else {
+        categories = basicCategory;
+      }
+    }
 
     let url = uploadUrl;
     url += "wlm-pl&descriptionlang=pl";
-    url += `&description=${description}&categories=${category}&id=Q${vm.data.id}`;
-    url += `&lat=${vm.data.lat}&lon=${vm.data.lon}`;
+    url += `&description=${encodeURIComponent(description)}&categories=${encodeURIComponent(categories)}&id=Q${vm.data.id}`;
+    url += `&lat=${encodeURIComponent(vm.data.lat)}&lon=${encodeURIComponent(vm.data.lon)}`;
     return url;
   }
 
