@@ -1,5 +1,3 @@
-import "../../images/logo.png";
-
 import "./header.scss";
 import template from "./header.html";
 

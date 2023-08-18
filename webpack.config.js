@@ -3,6 +3,8 @@ const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // var ngAnnotatePlugin = require("ng-annotate-webpack-plugin");
+// eslint-disable-next-line import/no-extraneous-dependencies
+const TerserPlugin = require("terser-webpack-plugin");
 
 const packageJson = require("./package.json");
 
@@ -20,19 +22,6 @@ const config = {
       template: "index.html.ejs",
       filename: path.join("..", "index.html")
     }),
-    // function () {
-    //   this.plugin("watch-run", function (watching, callback) {
-    //     console.log(
-    //       "\n\n---- " +
-    //         new Date()
-    //           .toISOString()
-    //           .replace("T", " ")
-    //           .replace(/\.[0-9]+Z/, "") +
-    //         " ----\n"
-    //     );
-    //     callback();
-    //   });
-    // }
   ],
   module: {
     rules: [
@@ -92,28 +81,34 @@ const config = {
   }
 };
 
-const ENV = process.env.NODE_ENV;
-if (ENV === "prod" || ENV === "dev") {
+/**
+ * Production mode re-configuration.
+ */
+function production() {
   config.output = {
-    path: path.join(__dirname, "app", "assets"),
+    path: path.join(__dirname, "app-prod", "assets"),
     publicPath: "auto",
-    filename: `bundle.min.js?v=${packageJson.version}`
+    filename: `bundle.js?v=${packageJson.version}`
   };
-  config.plugins = [
-    new HtmlWebpackPlugin({
-      template: "index.html.ejs",
-      filename: path.join("..", "index.html")
-    }),
-    // new ngAnnotatePlugin({
-    //   add: true
-    // }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   },
-    //   mangle: false
-    // })
-  ];
+  config.optimization = {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          mangle: false,  // uglify doesn't work with this project
+          compress: true, // compress = less whitespace
+          output: {
+            beautify: true  // keep somewhat readable
+          }
+        },
+      }),
+    ],
+  };
 }
 
-module.exports = config;
+module.exports = (env) => {
+  if (env.prod) {
+    production();
+  }
+  return config;
+}
