@@ -40,14 +40,29 @@ ww-header {
   .app-img-short {
     display: none;
   }
-  // hide long logo on small screen, but only when search was activated
   @media (max-width: 500px) {
+    // hide long logo on small screen, but only when search was activated
     .search-wasactive & {
       .app-img-long {
         display: none;
       }
       .app-img-short {
         display: inline-block;
+      }
+    }
+
+    // tweak auto-resize
+    .logo-link {
+      display: flex;
+      justify-content: center;
+
+      img {
+        height: auto;
+        max-height: 50px;
+        width: 90%;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
     }
   }
