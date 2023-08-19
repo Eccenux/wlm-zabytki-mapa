@@ -11,7 +11,7 @@ const packageJson = require("./package.json");
 const config = {
   mode: 'development',
   context: path.join(__dirname, "src"),
-  entry: ["babel-polyfill", "./index.js"],
+  entry: ["./index.js"],
   output: {
     path: path.join(__dirname, "app", "assets"),
     publicPath: "auto",
@@ -20,6 +20,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "index.html.ejs",
+      minify: false,
       filename: path.join("..", "index.html")
     }),
   ],
@@ -88,10 +89,13 @@ function production() {
   config.output = {
     path: path.join(__dirname, "app-prod", "assets"),
     publicPath: "auto",
-    filename: `bundle.js?v=${packageJson.version}`
+    filename: `bundle.[name].js?v=${packageJson.version}`
   };
   config.optimization = {
     minimize: true,
+    splitChunks: {
+     chunks: 'all',
+    },
     minimizer: [
       new TerserPlugin({
         terserOptions: {

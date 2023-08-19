@@ -51,10 +51,6 @@
     "angular-aria": "1.x",
     "angular-leaflet-directive": "0.x",
     "angular-material": "1.x",
-    "angular-messages": "1.x",
-    "babel-polyfill": "6.x",
-    "babel-runtime": "6.x",
-    "jquery": "3.x",
     "leaflet": "1.x",
     "leaflet.markercluster": "1.x",
     "proj4": "2.x"

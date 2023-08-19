@@ -1,11 +1,9 @@
-import $ from "jquery";
 import proj4 from "proj4";
 
 const DataService = ($http, $q) => {
   let lastCoord = {};
 
   const overpassApiUrl = "http://overpass-api.de/api/interpreter";
-  const monumentsApiUrl = "https://tools.wmflabs.org/heritage/api/api.php";
   const puwgProjection =
     "+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs";
 
@@ -13,7 +11,6 @@ const DataService = ($http, $q) => {
     getArt,
     getCity,
     getMonuments,
-    getMonumentsOld,
     getNature,
     getLastCoord
   };
@@ -122,39 +119,6 @@ const DataService = ($http, $q) => {
         options
       )
     );
-  }
-
-  function getMonumentsOld(bounds) {
-    const b = bounds;
-    const bbox = [
-      b.southWest.lng,
-      b.southWest.lat,
-      b.northEast.lng,
-      b.northEast.lat
-    ].join(",");
-
-    return $q((resolve, reject) => {
-      $.ajax({
-        type: "GET",
-        url: monumentsApiUrl,
-        data: {
-          action: "search",
-          format: "json",
-          limit: "100",
-          srcountry: "pl",
-          bbox
-        },
-        async: false,
-        contentType: "application/json",
-        dataType: "jsonp",
-        success: data => {
-          resolve(data.monuments ? data.monuments : false);
-        },
-        error: data => {
-          reject(data);
-        }
-      });
-    });
   }
 
   function getNature(coords) {
