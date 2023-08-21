@@ -1,7 +1,7 @@
 import L from "leaflet";
 
 import "../images/marker-blue.png";
-import "../images/marker-violet.png";
+import "../images/marker-red.png";
 import "../images/marker-shadow.png";
 
 const gdosApiUrl = "http://sdi.gdos.gov.pl/wms";
@@ -28,7 +28,7 @@ const MapService = versionService => {
 
   function getMapIcon(options) {
     const iconUrl = `assets/images/marker-${
-      options && options.type ? "violet" : "blue"
+      options && options.type ? "red" : "blue"
     }.png`;
     return {
       iconUrl,
@@ -112,6 +112,25 @@ const MapService = versionService => {
                   return new L.DivIcon({
                     html: `<div><span>${cluster.getChildCount()}</span></div>`,
                     className: `marker-cluster marker-cluster-small marker-cluster--${version}`,
+                    iconSize: new L.Point(40, 40)
+                  });
+                }
+              }
+            },
+            pinsMissing: {
+              name: "MissingMarkers",
+              type: "markercluster",
+              visible: true,
+              layerOptions: {
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true,
+                maxClusterRadius: zoom => 130 - zoom * 5,
+                animate: false,
+                iconCreateFunction: cluster => {
+                  const version = versionService.getVersion();
+                  return new L.DivIcon({
+                    html: `<div><span>${cluster.getChildCount()}</span></div>`,
+                    className: `marker-cluster marker-cluster-small marker-cluster--${version} marker-missing`,
                     iconSize: new L.Point(40, 40)
                   });
                 }

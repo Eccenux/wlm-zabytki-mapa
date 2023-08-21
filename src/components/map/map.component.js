@@ -144,7 +144,7 @@ function controller(
           vm.map.highlight = "";
 
           data.data.elements.forEach(element => {
-            vm.map.markers[element.id] = setMarker(element);
+            vm.map.markers[element.id] = getMarker(element);
           });
         },
         () => {
@@ -180,7 +180,7 @@ function controller(
             return;
           }
           cards.forEach(element => {
-            vm.map.markers[element.id] = setMarker(element);
+            vm.map.markers[element.id] = getMarker(element);
           });
         },
         () => {
@@ -214,6 +214,7 @@ function controller(
                 image: object.image
                   ? object.image.value.substring(51)
                   : undefined,
+                type: object.image ? 'done' : 'missing', // icon (marker) type
                 town: object.townLabel ? object.townLabel.value : undefined,
                 category: object.category ? object.category.value : undefined,
                 category2: object.townCategory
@@ -252,13 +253,17 @@ function controller(
     return bHasImage ? -1 : 0;
   }
 
-  function setMarker(element) {
+  function getMarker(element) {
+    const iconOptions = {type:0};
+    if (element.type === 'missing') {
+      iconOptions.type = 1;
+    }
     const data = {
       data: element,
       lat: element.lat,
       lng: element.lon,
-      layer: "pins",
-      icon: mapService.getMapIcon(element)
+      layer: element.type === 'missing' ? "pinsMissing" : "pins",
+      icon: mapService.getMapIcon(iconOptions),
     };
     return data;
   }
