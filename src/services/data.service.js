@@ -103,6 +103,7 @@ const DataService = ($http, $q) => {
       OPTIONAL { ?item wdt:P131 ?town . ?town wdt:P131 ?admin . ?admin wdt:P373 ?adminCategory }
       OPTIONAL { ?item wdt:P18 ?image . }
       ?item wdt:P1435 wd:Q29940414 .
+      FILTER NOT EXISTS { ?item wdt:P31 wd:Q19860854 }
       OPTIONAL { ?item wdt:P31 ?type }
       OPTIONAL { ?item wdt:P373 ?category }
       SERVICE wikibase:label { bd:serviceParam wikibase:language "pl,en" }
