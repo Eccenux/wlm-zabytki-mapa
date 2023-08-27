@@ -1,6 +1,6 @@
 {
   "name": "wlm-zabytki-mapa",
-  "version": "23.08.22",
+  "version": "23.08.26",
   "private": true,
   "description": "",
   "main": "src/index.js",
@@ -10,7 +10,7 @@
     "start": "webpack --watch --progress",
     "build": "webpack --progress",
     "build-prod": "webpack --progress --mode production --env=prod",
-    "test": "echo OK"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "Yarl, Nux",
@@ -19,7 +19,10 @@
     "@babel/cli": "7.x",
     "@babel/core": "7.x",
     "@babel/preset-env": "7.x",
+    "@babel/register": "7.x",
+    "core-js": "^3.32.1",
     "babel-loader": "^9.1.3",
+    "chai": "4.x",
     "css-loader": "6.x",
     "eslint": "^8.47.0",
     "eslint-config-airbnb": "19.x",
@@ -31,6 +34,7 @@
     "eslint-plugin-react": "7.x",
     "file-loader": "6.x",
     "html-webpack-plugin": "5.x",
+    "mocha": "10.x",
     "node-sass": "9.x",
     "raw-loader": "4.x",
     "sass-loader": "13.x",

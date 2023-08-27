@@ -1,4 +1,8 @@
+/* eslint-disable no-console */
+/* eslint-disable angular/json-functions */
+/* eslint-disable angular/log */
 import proj4 from "proj4";
+import { downAccuracy, ceilAccuracy } from '../lib/MapHelpers';
 
 const DataService = ($http, $q) => {
   let lastCoord = {};
@@ -77,8 +81,16 @@ const DataService = ($http, $q) => {
    */
   function getMonuments(bounds, options) {
     const b = bounds;
+
     // might increase performance (cache hits)
-    const reduceAccuracy = (d) => d.toFixed(5);
+    const digits = 4;
+    const cornerWest = `Point(${downAccuracy(b.southWest.lng, digits)} ${downAccuracy(b.southWest.lat, digits)})`;
+    const cornerEast = `Point(${ceilAccuracy(b.northEast.lng, digits)} ${ceilAccuracy(b.northEast.lat, digits)})`;
+    console.log(`Full(${b.southWest.lng} ${b.southWest.lat})`);
+    console.log(`Full(${b.northEast.lng} ${b.northEast.lat})`);
+    console.log(cornerWest);
+    console.log(cornerEast);
+
     /*
       P1435 = status dobra kultury
         wd:Q29940414	zabytek nieruchomy -- raczej wojewódzki rejestr
@@ -95,8 +107,8 @@ const DataService = ($http, $q) => {
     const query = `SELECT ?item ?itemLabel ?townLabel ?image ?coord ?category ?townCategory ?adminCategory WHERE {
       SERVICE wikibase:box {
       ?item wdt:P625 ?coord .
-        bd:serviceParam wikibase:cornerWest "Point(${reduceAccuracy(b.southWest.lng)} ${reduceAccuracy(b.southWest.lat)})"^^geo:wktLiteral .
-        bd:serviceParam wikibase:cornerEast "Point(${reduceAccuracy(b.northEast.lng)} ${reduceAccuracy(b.northEast.lat)})"^^geo:wktLiteral .
+        bd:serviceParam wikibase:cornerWest "${cornerWest}"^^geo:wktLiteral .
+        bd:serviceParam wikibase:cornerEast "${cornerEast}"^^geo:wktLiteral .
       }
       OPTIONAL { ?item wdt:P131 ?town . }
       OPTIONAL { ?item wdt:P131 ?town . ?town wdt:P373 ?townCategory }
