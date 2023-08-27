@@ -62,8 +62,19 @@ function controller(
             });
           }
         });
+
+        // replace invalid boundaries
+        // (vm.mapBounds is too small onload... sometimes)
+        const b = map.getBounds();
+        const ne = b.getNorthEast();
+        const sw = b.getSouthWest();
+        // debugger;
+        vm.mapBounds.northEast.lat = ne.lat;
+        vm.mapBounds.northEast.lng = ne.lng;
+        vm.mapBounds.southWest.lat = sw.lat;
+        vm.mapBounds.southWest.lng = sw.lng;
+        getObjects();
       });
-      getObjects();
     }, 100);
 
     $scope.$on("leafletDirectiveMarker.click", (event, args) => {
