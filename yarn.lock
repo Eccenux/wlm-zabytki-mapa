@@ -2011,9 +2011,9 @@
   "version" "6.3.0"
 
 "caniuse-lite@^1.0.30001517":
-  "integrity" "sha512-I5q5cisATTPZ1mc588Z//pj/Ox80ERYDfR71YnvY7raS/NOk8xXlZcB0sF7JdqaV//kOaa6aus7lRfpdnt1eBA=="
-  "resolved" "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001523.tgz"
-  "version" "1.0.30001523"
+  "integrity" "sha512-Jj917pJtYg9HSJBF95HVX3Cdr89JUyLT4IZ8SvM5aDRni95swKgYi3TgYLH5hnGfPE/U1dg6IfZ50UsIlLkwSA=="
+  "resolved" "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001524.tgz"
+  "version" "1.0.30001524"
 
 "chai@4.x":
   "integrity" "sha512-vX4YvVVtxlfSZ2VecZgFUTU5qPCYsobVI2O9FmwEXBhDigYGQA6jRXCycIs1yJnnWbZ6/+a2zNIF5DfVCcJBFQ=="
@@ -2576,7 +2576,7 @@
   dependencies:
     "is-arrayish" "^0.2.1"
 
-"es-abstract@^1.19.0", "es-abstract@^1.20.4", "es-abstract@^1.21.2", "es-abstract@^1.21.3":
+"es-abstract@^1.19.0", "es-abstract@^1.20.4", "es-abstract@^1.21.2", "es-abstract@^1.22.1":
   "integrity" "sha512-ioRRcXMO6OFyRpyzV3kE1IIBd4WG5/kltnzdxSCqoP8CMGs/Li+M1uF5o7lOkZVFjDs+NLesthnF66Pg/0q0Lw=="
   "resolved" "https://registry.npmjs.org/es-abstract/-/es-abstract-1.22.1.tgz"
   "version" "1.22.1"
@@ -2622,14 +2622,14 @@
     "which-typed-array" "^1.1.10"
 
 "es-iterator-helpers@^1.0.12":
-  "integrity" "sha512-LK3VGwzvaPWobO8xzXXGRUOGw8Dcjyfk62CsY/wfHN75CwsJPbuypOYJxK6g5RyEL8YDjIWcl6jgd8foO6mmrA=="
-  "resolved" "https://registry.npmjs.org/es-iterator-helpers/-/es-iterator-helpers-1.0.13.tgz"
-  "version" "1.0.13"
+  "integrity" "sha512-JgtVnwiuoRuzLvqelrvN3Xu7H9bu2ap/kQ2CrM62iidP8SKuD99rWU3CJy++s7IVL2qb/AjXPGR/E7i9ngd/Cw=="
+  "resolved" "https://registry.npmjs.org/es-iterator-helpers/-/es-iterator-helpers-1.0.14.tgz"
+  "version" "1.0.14"
   dependencies:
     "asynciterator.prototype" "^1.0.0"
     "call-bind" "^1.0.2"
     "define-properties" "^1.2.0"
-    "es-abstract" "^1.21.3"
+    "es-abstract" "^1.22.1"
     "es-set-tostringtag" "^2.0.1"
     "function-bind" "^1.1.1"
     "get-intrinsic" "^1.2.1"

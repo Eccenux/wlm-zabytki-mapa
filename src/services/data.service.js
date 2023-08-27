@@ -19,6 +19,12 @@ const DataService = ($http, $q) => {
     getLastCoord
   };
 
+  // cache
+  const previousMonuments = {
+    query: '',
+    data: '',
+  };
+
   return service;
 
   // functions
@@ -121,6 +127,14 @@ const DataService = ($http, $q) => {
       SERVICE wikibase:label { bd:serviceParam wikibase:language "pl,en" }
     }
     LIMIT 2000`.replace(/ {2,}/g, " ");
+
+    // attempt interal cache (avoid duplicate requests)
+    if (previousMonuments.query === query) {
+      console.log('getMonuments: resolve from cache');
+      return Promise.resolve(previousMonuments.data);
+    }
+
+    // load from WD
     return $http(
       angular.extend(
         {},
@@ -131,7 +145,12 @@ const DataService = ($http, $q) => {
         },
         options
       )
-    );
+    ).then((data) => {
+      // save interal cache
+      previousMonuments.query = query;
+      previousMonuments.data = data;
+      return data;
+    });
   }
 
   function getNature(coords) {

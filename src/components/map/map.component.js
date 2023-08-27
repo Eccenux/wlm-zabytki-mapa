@@ -1,5 +1,6 @@
 /* eslint-disable angular/typecheck-string */
 /* eslint-disable angular/typecheck-object */
+/* global L */
 import "./map.scss";
 import template from "./map.html";
 
@@ -182,7 +183,7 @@ function controller(
       .then(
         data => {
           vm.loading.active -= 1;
-          const cards = transofrmMonuments(data.data.results);
+          const cards = transformMonuments(data.data.results, vm.mapBounds);
           vm.cards = cards || [];
           mapService.clearMarkers();
           vm.map.highlight = "";
@@ -203,13 +204,15 @@ function controller(
   }
 
   /**
-   * Transforma API data for the card component.
+   * Transforms API data for the card component.
    * @param {Object} results Successful results of API call.
+   * @param {Object} bounds Map rectangle corners.
    * @returns Data for src\components\card\card.html
    */
-  function transofrmMonuments(results) {
+  function transformMonuments(results, bounds) {
     // console.log(results.bindings.map(o=>JSON.stringify(o.image)));
     // console.log(results);
+    const llBounds = L.latLngBounds(bounds.southWest, bounds.northEast);
     const cards = results.bindings
             .map(object => {
               const coord = object.coord.value
@@ -236,9 +239,15 @@ function controller(
                   : undefined
               };
             })
+            // filter out duplicates (same Q)
             .filter(
               (element, index, array) =>
                 array.findIndex(t => t.id === element.id) === index
+            )
+            // filter out elements outside of current viewport
+            .filter(
+              (element) =>
+                llBounds.contains({lat:element.lat, lon:element.lon})
             )
             .sort(sortMonuments)
     ;
