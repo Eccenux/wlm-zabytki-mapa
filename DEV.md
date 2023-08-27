@@ -94,3 +94,28 @@ https://pl.wikipedia.org/wiki/Wikipedysta:Nux/test_WLZ_dok%C5%82adno%C5%9B%C4%87
 
 Calculations:
 https://github.com/Eccenux/wlm-zabytki-robocze
+
+Library compatibility
+--------------------------
+
+### Leaflet
+
+Seems like leaflet 1.8 (and 1.9) doesn't work with the last markercluster (1.5.3) 
+or with the last `angular-leaflet-directive` (0.10.0).
+
+Bug: Włączenie przesuwania mapy w wersji mobilnej #4
+
+Works fine:
+```
+    "leaflet": "1.5.x",
+    "leaflet.markercluster": "1.5.x",
+...
+    "leaflet": "1.7.x",
+    "leaflet.markercluster": "1.5.x",
+```
+
+Broken dragging on mobile:
+```
+    "leaflet": "1.8.x",
+    "leaflet.markercluster": "1.5.x",
+```
