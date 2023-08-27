@@ -86,3 +86,11 @@ myMarker = L.marker(pos, {icon: myIcon})
   .bindPopup(`Marker at:<br>${pos}`)
   //.openPopup();
 ```
+
+Geolocation accuracy
+----------------------
+Rounding errors for lat/lon vs distance from original lat/lon:
+https://pl.wikipedia.org/wiki/Wikipedysta:Nux/test_WLZ_dok%C5%82adno%C5%9B%C4%87_geo-wsp%C3%B3%C5%82rz%C4%99dnych
+
+Calculations:
+https://github.com/Eccenux/wlm-zabytki-robocze
