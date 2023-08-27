@@ -83,7 +83,7 @@ const DataService = ($http, $q) => {
     const b = bounds;
 
     // might increase performance (cache hits)
-    const digits = 4;
+    const digits = 2;
     const cornerWest = `Point(${downAccuracy(b.southWest.lng, digits)} ${downAccuracy(b.southWest.lat, digits)})`;
     const cornerEast = `Point(${ceilAccuracy(b.northEast.lng, digits)} ${ceilAccuracy(b.northEast.lat, digits)})`;
     console.log(`Full(${b.southWest.lng} ${b.southWest.lat})`);
