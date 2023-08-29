@@ -4,7 +4,7 @@
 import proj4 from "proj4";
 import { downAccuracy, ceilAccuracy } from '../lib/MapHelpers';
 
-const DataService = ($http, $q) => {
+const DataService = ($http) => {
   let lastCoord = {};
 
   const overpassApiUrl = "http://overpass-api.de/api/interpreter";
