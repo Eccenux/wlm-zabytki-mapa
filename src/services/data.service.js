@@ -109,8 +109,12 @@ const DataService = ($http) => {
 
       # filtr podstawowy (istnienie P1435)
       ?item p:P1435 ?monument .
+
+      # adres do nawigacji (zazwyczaj w formie: /Ulica nr/,
+      # ale też: "ul. Spacerowa 10,45-094 Opole")
+      OPTIONAL { ?item wdt:P6375 ?address. }
     */
-    const query = `SELECT ?item ?itemLabel ?townLabel ?image ?coord ?category ?townCategory ?adminCategory WHERE {
+    const query = `SELECT ?item ?itemLabel ?townLabel ?image ?coord ?category ?townCategory ?adminCategory ?address WHERE {
       SERVICE wikibase:box {
       ?item wdt:P625 ?coord .
         bd:serviceParam wikibase:cornerWest "${cornerWest}"^^geo:wktLiteral .
@@ -124,6 +128,7 @@ const DataService = ($http) => {
       FILTER NOT EXISTS { ?item wdt:P31 wd:Q19860854 }
       OPTIONAL { ?item wdt:P31 ?type }
       OPTIONAL { ?item wdt:P373 ?category }
+      OPTIONAL { ?item wdt:P6375 ?address. }
       SERVICE wikibase:label { bd:serviceParam wikibase:language "pl,en" }
     }
     LIMIT 2000`.replace(/ {2,}/g, " ");
