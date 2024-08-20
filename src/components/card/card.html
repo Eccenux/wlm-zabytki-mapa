@@ -44,7 +44,12 @@
     ng-if="$ctrl.version() === 'monuments'"
   >
     <span class="ww-card__title"> {{ $ctrl.data.name }} </span>
-    <span class="md-subhead"> {{ $ctrl.data.town }} </span>
+    <span class="md-subhead"
+      ng-click="$ctrl.openNavigationDialog($ctrl.data)"
+    >
+      {{ $ctrl.data.town }}<span ng-if="$ctrl.data.address">{{ ', ' + $ctrl.data.address }}</span>
+    </span>
+    <!-- <md-icon>navigation</md-icon> -->
   </md-card-title-text>
 
   <md-card-title-text

@@ -14,6 +14,7 @@ const CardComponent = {
 function controller(
   $timeout,
   $window,
+  $mdDialog,
   mapService,
   versionService,
   dataService
@@ -27,6 +28,7 @@ function controller(
   vm.showNatureDetails = showNatureDetails;
   vm.showOnMap = showOnMap;
   vm.upload = upload;
+  vm.openNavigationDialog = openNavigationDialog;
   vm.version = () => versionService.getVersion();
 
   vm.artTypes = {
@@ -166,6 +168,23 @@ function controller(
       `http://crfop.gdos.gov.pl/CRFOP/widok/viewfop.jsf?fop=${data.id}`,
       "_blank"
     );
+  }
+
+  function openNavigationDialog(data) {
+    const fullAddress = data.town + (data.address ? `, ${data.address}` : '');
+    const location = `${data.lat}, ${data.lon}`;
+    $mdDialog.show({
+      template: '<navigation-dialog address="$ctrl.address" location="$ctrl.location"></navigation-dialog>',
+      locals: {
+        address: fullAddress,
+        location
+      },
+      // eslint-disable-next-line object-shorthand, func-names
+      controller: function() { this.address = fullAddress; this.location = location; },
+      controllerAs: '$ctrl',
+      bindToController: true,
+      clickOutsideToClose: true
+    });
   }
 }
 

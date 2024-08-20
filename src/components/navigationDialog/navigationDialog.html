@@ -1,0 +1,26 @@
+<!-- Dialog template to open navigation in remote services (map apps). -->
+<!-- // TODO: i18n -->
+<md-dialog class="navigation-dialog">
+  <md-dialog-content>
+    <md-card-title-text>
+      <h2>Navigate to monument</h2>
+    </md-card-title-text>
+
+    <p>Address: {{ $ctrl.address }}<br>
+    Location: {{ $ctrl.location }}</p>
+
+    <div class="buttons-group">
+      <div class="group-label">Select a navigation method:</div>
+      <md-button class="md-primary" ng-click="$ctrl.navigateToAddress()">
+        Use Address
+      </md-button>
+      <md-button class="md-primary" ng-click="$ctrl.navigateToLocation()">
+        Use Location
+      </md-button>
+    </div>
+  </md-dialog-content>
+
+  <md-dialog-actions class="actions">
+    <md-button ng-click="$ctrl.closeDialog()">Close</md-button>
+  </md-dialog-actions>
+</md-dialog>

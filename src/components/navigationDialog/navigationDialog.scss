@@ -1,0 +1,20 @@
+.navigation-dialog {
+  width: 450px;
+  // this has weird effects on md-dialog...
+  max-width: 100%;  
+  
+  md-dialog-content {
+    padding: 1em 1em 0 1em;  
+  }
+
+  h2 {
+    font-size: 120%;
+    margin: 0;
+    margin-bottom: .5em;
+  }
+
+  .group-label {
+    font-size: 90%;
+    // margin-bottom: .5em;
+  }
+}

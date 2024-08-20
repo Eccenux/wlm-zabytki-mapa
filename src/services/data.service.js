@@ -113,6 +113,9 @@ const DataService = ($http) => {
       # adres do nawigacji (zazwyczaj w formie: /Ulica nr/,
       # ale też: "ul. Spacerowa 10,45-094 Opole")
       OPTIONAL { ?item wdt:P6375 ?address. }
+
+      Note! After adding anything here you will also need to change `transformMonuments(.)`.
+      Transformed data is shown as a list on `src\components\card\card.html`. 
     */
     const query = `SELECT ?item ?itemLabel ?townLabel ?image ?coord ?category ?townCategory ?adminCategory ?address WHERE {
       SERVICE wikibase:box {

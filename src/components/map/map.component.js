@@ -218,7 +218,8 @@ function controller(
               const coord = object.coord.value
                 .replace("Point(", "")
                 .replace(")", "")
-                .split(" ");
+                .split(" ")
+              ;
 
               return {
                 id: object.item.value.substring(32),
@@ -230,6 +231,7 @@ function controller(
                   : undefined,
                 type: object.image ? 'done' : 'missing', // icon (marker) type
                 town: object.townLabel ? object.townLabel.value : undefined,
+                address: object.address ? object.address.value : undefined,
                 category: object.category ? object.category.value : undefined,
                 category2: object.townCategory
                   ? object.townCategory.value
