@@ -3,7 +3,7 @@
 <md-dialog class="navigation-dialog">
   <md-dialog-content>
     <md-card-title-text>
-      <h2>Navigate to monument</h2>
+      <h2>{{ $ctrl.monumentData.name }}</h2>
     </md-card-title-text>
 
     <p>Address: {{ $ctrl.getFormattedAddress() }}<br>
@@ -12,9 +12,13 @@
     <div class="buttons-group">
       <div class="group-label">Select a navigation method:</div>
       <md-button class="md-primary" ng-click="$ctrl.navigateToAddress()" title="{{ $ctrl.getFormattedAddress() }}">
+        <!-- <md-icon>info</md-icon>
+        {{ ::$ctrl.text.CARD_MORE_INFO }} -->
+        <md-icon>contact_mail</md-icon>
         Use Address
       </md-button>
       <md-button class="md-primary" ng-click="$ctrl.navigateToLocation()" title="{{ $ctrl.getFormattedLocation() }}">
+        <md-icon>pin_drop</md-icon>
         Use Location
       </md-button>
     </div>
