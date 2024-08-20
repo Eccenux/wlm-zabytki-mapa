@@ -9,8 +9,7 @@ import template from "./navigationDialog.html";
 
 const NavigationDialogComponent = {
   bindings: {
-    address: "=",
-    location: "="
+    monumentData: "=",
   },
   controller,
   template
@@ -22,6 +21,31 @@ function controller(
 ) {
   const vm = this;
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  // console.log('[nav.con]', vm.monumentData);
+  // // React to changes in bindings
+  // vm.$onChanges = function (changes) {
+  //   console.log('[nav.con]', 'onchanged:', {monumentData:vm.monumentData, changes});
+  // };
+  let prepareDone = false;
+  function prepareData() {
+    if (prepareDone) {
+      return;
+    }
+    prepareDone = true;
+    const data = vm.monumentData;
+    vm.address = data.town + (data.address ? `, ${data.address}` : '');
+    vm.location = `${data.lat}, ${data.lon}`;
+  }
+
+  vm.getFormattedAddress = function() {
+    prepareData();
+    return vm.address;
+  };
+  vm.getFormattedLocation = function() {
+    prepareData();
+    return vm.location;
+  };
 
   vm.navigateToAddress = function () {
     const address = vm.address.replace(/\s+/, '');

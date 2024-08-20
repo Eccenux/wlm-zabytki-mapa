@@ -170,17 +170,16 @@ function controller(
     );
   }
 
-  function openNavigationDialog(data) {
-    const fullAddress = data.town + (data.address ? `, ${data.address}` : '');
-    const location = `${data.lat}, ${data.lon}`;
+  function openNavigationDialog(monumentData) {
     $mdDialog.show({
-      template: '<navigation-dialog address="$ctrl.address" location="$ctrl.location"></navigation-dialog>',
+      template: '<navigation-dialog monument-data="$ctrl.monumentData"></navigation-dialog>',
       locals: {
-        address: fullAddress,
-        location
+        monumentData
       },
       // eslint-disable-next-line object-shorthand, func-names
-      controller: function() { this.address = fullAddress; this.location = location; },
+      controller: function() { 
+        this.monumentData = monumentData; 
+      },
       controllerAs: '$ctrl',
       bindToController: true,
       clickOutsideToClose: true

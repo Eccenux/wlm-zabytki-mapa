@@ -6,15 +6,15 @@
       <h2>Navigate to monument</h2>
     </md-card-title-text>
 
-    <p>Address: {{ $ctrl.address }}<br>
-    Location: {{ $ctrl.location }}</p>
+    <p>Address: {{ $ctrl.getFormattedAddress() }}<br>
+    Location: {{ $ctrl.getFormattedLocation() }}</p>
 
     <div class="buttons-group">
       <div class="group-label">Select a navigation method:</div>
-      <md-button class="md-primary" ng-click="$ctrl.navigateToAddress()">
+      <md-button class="md-primary" ng-click="$ctrl.navigateToAddress()" title="{{ $ctrl.getFormattedAddress() }}">
         Use Address
       </md-button>
-      <md-button class="md-primary" ng-click="$ctrl.navigateToLocation()">
+      <md-button class="md-primary" ng-click="$ctrl.navigateToLocation()" title="{{ $ctrl.getFormattedLocation() }}">
         Use Location
       </md-button>
     </div>
