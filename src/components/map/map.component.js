@@ -232,6 +232,8 @@ function controller(
                 type: object.image ? 'done' : 'missing', // icon (marker) type
                 town: object.townLabel ? object.townLabel.value : undefined,
                 address: object.address ? object.address.value : undefined,
+                inspireId: object.inspireId ? object.inspireId.value : undefined,
+                commonsCategory: object.commonsCategory ? object.commonsCategory.value : undefined,
                 category: object.category ? object.category.value : undefined,
                 category2: object.townCategory
                   ? object.townCategory.value

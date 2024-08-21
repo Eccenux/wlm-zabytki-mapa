@@ -1,4 +1,8 @@
-<!-- Dialog template to open navigation in remote services (map apps). -->
+<!--
+  Dialog template for details and navigation.
+
+  Navigation meaning open external map (map apps or services).
+-->
 <!-- // TODO: i18n -->
 <md-dialog class="navigation-dialog">
   <md-dialog-content>
@@ -7,7 +11,20 @@
     </md-card-title-text>
 
     <p>Address: {{ $ctrl.getFormattedAddress() }}<br>
-    Location: {{ $ctrl.getFormattedLocation() }}</p>
+      Location: {{ $ctrl.getFormattedLocation() }}</p>
+
+      <!--
+        Wincyj info!!!
+
+        getWikidataDetails()
+        - plwikiArticle -> link: <a href=url>title</a>
+        - wikis -> liczba artykułów w wipediach (odfitrować nie-wikipedie e.g. commonswiki)
+        - wikis -> linki: enwiki, dewiki, frwiki?
+        - inspireId -> zabytek.pl
+        - show: polishHeritageNumber, buildDate
+        - commonsCategory -> link do commons
+        - commonsCategory -> mini galeria?
+      -->
 
     <div class="buttons-group">
       <div class="group-label">Select a navigation method:</div>
@@ -22,6 +39,34 @@
         Use Location
       </md-button>
     </div>
+
+    <div class="buttons-group">
+      <div class="group-label">Linki zewnętrzne:</div>
+      <md-button 
+        ng-href="https://www.wikidata.org/wiki/Q{{ $ctrl.monumentData.id }}?uselang=pl"
+        target="_blank" rel="noopener"
+      >
+        <md-icon>open_in_new</md-icon>
+        Wikidane
+      </md-button>
+      <md-button 
+        ng-href="https://zabytek.pl/pl/szukaj?szukaj={{ $ctrl.monumentData.inspireId }}"
+        ng-if="$ctrl.monumentData.inspireId"
+        target="_blank" rel="noopener"
+      >
+        <md-icon>open_in_new</md-icon>
+        zabytek.pl
+      </md-button>
+      <md-button 
+        ng-href="{{ $ctrl.getCommonsUrl() }}"
+        ng-if="$ctrl.monumentData.commonsCategory"
+        target="_blank" rel="noopener"
+      >
+        <md-icon>open_in_new</md-icon>
+        Wikimedia Commons
+      </md-button>
+    </div>
+
   </md-dialog-content>
 
   <md-dialog-actions class="actions">

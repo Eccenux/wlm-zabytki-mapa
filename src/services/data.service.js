@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-console */
 /* eslint-disable angular/json-functions */
 /* eslint-disable angular/log */
@@ -15,6 +16,7 @@ const DataService = ($http) => {
     getArt,
     getCity,
     getMonuments,
+    getWikidataDetails,
     getNature,
     getLastCoord
   };
@@ -73,6 +75,38 @@ const DataService = ($http) => {
   }
 
   /**
+   * Load details from Wikidata.
+   * @param {String} wikidataId 
+   */
+  function getWikidataDetails(wikidataId) {
+    const url = `https://www.wikidata.org/wiki/Special:EntityData/${wikidataId}.json`;
+    return new Promise((resolve, reject) => {
+      fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const entity = data.entities[wikidataId];
+        const claims = entity.claims;
+        const result = {
+          plwikiArticle: entity.sitelinks.plwiki && entity.sitelinks.plwiki, // {site:"plwiki", title:., url:.}
+          wikis: entity.sitelinks,
+          inspireId: claims.P4115 && claims.P4115[0].mainsnak.datavalue.value,  // for zabytek.pl
+          polishHeritageNumber: claims.P3424 && claims.P3424[0].mainsnak.datavalue.value, // for PDF
+          buildDate: claims.P571 && claims.P571[0].mainsnak.datavalue.value.time, // of creation or establishment
+          commonsCategory: claims.P373 && claims.P373[0].mainsnak.datavalue.value,
+        };
+        resolve(result);
+      })
+      .catch(error => {
+        console.error('Error fetching Wikidata:', error);
+        reject(error);
+      })
+    })
+  }
+  // getWikidataDetails('Q30548900')  // Zabytkowy dom, Szeroka 9 (Q30548900)
+  // getWikidataDetails('Q107249676') // Saint-Julien (has commons cat)
+  // getWikidataDetails('Q18820') //  Zamek Królewski na Wawelu (Q18820)
+
+  /**
    * Monuments API query.
    * 
    * TODO: should optimize calls to this by using same bounds for many users.
@@ -117,7 +151,10 @@ const DataService = ($http) => {
       Note! After adding anything here you will also need to change `transformMonuments(.)`.
       Transformed data is shown as a list on `src\components\card\card.html`. 
     */
-    const query = `SELECT ?item ?itemLabel ?townLabel ?image ?coord ?category ?townCategory ?adminCategory ?address WHERE {
+    const query = `SELECT ?item ?itemLabel ?townLabel ?image 
+      ?coord ?category ?townCategory ?adminCategory
+      ?address ?inspireId ?commonsCategory
+    WHERE {
       SERVICE wikibase:box {
       ?item wdt:P625 ?coord .
         bd:serviceParam wikibase:cornerWest "${cornerWest}"^^geo:wktLiteral .
@@ -132,6 +169,8 @@ const DataService = ($http) => {
       OPTIONAL { ?item wdt:P31 ?type }
       OPTIONAL { ?item wdt:P373 ?category }
       OPTIONAL { ?item wdt:P6375 ?address. }
+      OPTIONAL { ?item wdt:P4115 ?inspireId. }
+      OPTIONAL { ?item wdt:P373 ?commonsCategory. }
       SERVICE wikibase:label { bd:serviceParam wikibase:language "pl,en" }
     }
     LIMIT 2000`.replace(/ {2,}/g, " ");

@@ -36,6 +36,7 @@ function controller(
     const data = vm.monumentData;
     vm.address = data.town + (data.address ? `, ${data.address}` : '');
     vm.location = `${data.lat}, ${data.lon}`;
+    vm.commonsUrl = data.commonsCategory && `https://commons.wikimedia.org/wiki/Category:${encodeURIComponent(data.commonsCategory)}`;
   }
 
   vm.getFormattedAddress = function() {
@@ -45,6 +46,10 @@ function controller(
   vm.getFormattedLocation = function() {
     prepareData();
     return vm.location;
+  };
+  vm.getCommonsUrl = function() {
+    prepareData();
+    return vm.commonsUrl;
   };
 
   vm.navigateToAddress = function () {
@@ -86,7 +91,7 @@ function controller(
     $window.open(url, '_blank');
   
     // Close the dialog
-    $mdDialog.hide();
+    // $mdDialog.hide();
   }
 }
 

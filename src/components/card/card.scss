@@ -18,7 +18,12 @@ ww-card {
   .buttons-group {
     display: flex;
     justify-content: right;
+    margin-top: .5em;
+    gap: .5em;
     // clear: both;
+    .md-button {
+      margin: 0;
+    }
   }
 
   .ww-card {
