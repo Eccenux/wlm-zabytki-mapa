@@ -66,14 +66,13 @@
   </md-card-title-text>
 
   <div class="buttons-group">
-    <!-- TODO: i18n -->
     <md-button
       ng-click="$ctrl.openNavigationDialog($ctrl.data)"
       ng-if="$ctrl.version() === 'monuments' && $ctrl.data.id"
     >
       <md-icon>info</md-icon>
       <md-icon>navigation</md-icon>
-      Więcej
+      {{ ::$ctrl.text.CARD_MORE_INFO }}
     </md-button>
 
     <md-button

@@ -17,10 +17,13 @@ const NavigationDialogComponent = {
 
 function controller(
   $window,
+  textService,
   $mdDialog
 ) {
   const vm = this;
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  vm.text = textService.getTexts();
 
   // console.log('[nav.con]', vm.monumentData);
   // // React to changes in bindings
@@ -61,13 +64,11 @@ function controller(
   vm.navigateToLocation = function () {
     // Location should be in the format "latitude,longitude"
     const location = vm.location.replace(/\s+/, '');
-  
     // Check if location is properly formatted
     if (!location || !/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(location)) {
       // eslint-disable-next-line angular/log, no-console
       console.error('Invalid location format:', location);
-      // TODO: i18n
-      alert("Location seems invalid.");
+      alert(vm.text.LOCATION_SEEMS_INVALID);
       return;
     }
   

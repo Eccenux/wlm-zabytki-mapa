@@ -3,15 +3,14 @@
 
   Navigation meaning open external map (map apps or services).
 -->
-<!-- // TODO: i18n -->
 <md-dialog class="navigation-dialog">
   <md-dialog-content>
     <md-card-title-text>
       <h2>{{ $ctrl.monumentData.name }}</h2>
     </md-card-title-text>
 
-    <p>Address: {{ $ctrl.getFormattedAddress() }}<br>
-      Location: {{ $ctrl.getFormattedLocation() }}</p>
+    <p>{{ ::$ctrl.text.ADDRESS }}: {{ $ctrl.getFormattedAddress() }}<br>
+      {{ ::$ctrl.text.LOCATION }}: {{ $ctrl.getFormattedLocation() }}</p>
 
       <!--
         Wincyj info!!!
@@ -27,27 +26,25 @@
       -->
 
     <div class="buttons-group">
-      <div class="group-label">Select a navigation method:</div>
+      <div class="group-label">{{ ::$ctrl.text.SELECT_NAVIGATION_METHOD }}</div>
       <md-button class="md-primary" ng-click="$ctrl.navigateToAddress()" title="{{ $ctrl.getFormattedAddress() }}">
-        <!-- <md-icon>info</md-icon>
-        {{ ::$ctrl.text.CARD_MORE_INFO }} -->
         <md-icon>contact_mail</md-icon>
-        Use Address
+        {{ ::$ctrl.text.USE_ADDRESS }}
       </md-button>
       <md-button class="md-primary" ng-click="$ctrl.navigateToLocation()" title="{{ $ctrl.getFormattedLocation() }}">
         <md-icon>pin_drop</md-icon>
-        Use Location
+        {{ ::$ctrl.text.USE_LOCATION }}
       </md-button>
     </div>
 
     <div class="buttons-group">
-      <div class="group-label">Linki zewnętrzne:</div>
+      <div class="group-label">{{ ::$ctrl.text.EXTERNAL_LINKS }}</div>
       <md-button 
         ng-href="https://www.wikidata.org/wiki/Q{{ $ctrl.monumentData.id }}?uselang=pl"
         target="_blank" rel="noopener"
       >
         <md-icon>open_in_new</md-icon>
-        Wikidane
+        {{ ::$ctrl.text.WIKIDATA }}
       </md-button>
       <md-button 
         ng-href="https://zabytek.pl/pl/szukaj?szukaj={{ $ctrl.monumentData.inspireId }}"
@@ -63,13 +60,13 @@
         target="_blank" rel="noopener"
       >
         <md-icon>open_in_new</md-icon>
-        Wikimedia Commons
+        {{ ::$ctrl.text.WIKIMEDIA_COMMONS }}
       </md-button>
     </div>
 
   </md-dialog-content>
 
   <md-dialog-actions class="actions">
-    <md-button ng-click="$ctrl.closeDialog()">Close</md-button>
+    <md-button ng-click="$ctrl.closeDialog()">{{ ::$ctrl.text.CLOSE }}</md-button>
   </md-dialog-actions>
 </md-dialog>
