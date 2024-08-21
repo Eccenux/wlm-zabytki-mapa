@@ -1,6 +1,6 @@
 {
   "name": "wlm-zabytki-mapa",
-  "version": "23.08.27",
+  "version": "24.08.21",
   "private": true,
   "description": "",
   "main": "src/index.js",
@@ -20,11 +20,11 @@
     "@babel/core": "7.x",
     "@babel/preset-env": "7.x",
     "@babel/register": "7.x",
-    "core-js": "^3.32.1",
+    "core-js": "^3.38.1",
     "babel-loader": "^9.1.3",
-    "chai": "4.x",
-    "css-loader": "6.x",
-    "eslint": "^8.47.0",
+    "chai": "5.x",
+    "css-loader": "7.x",
+    "eslint": "8.x",
     "eslint-config-airbnb": "19.x",
     "eslint-config-angular": "0.x",
     "eslint-config-prettier": "9.x",
@@ -42,13 +42,13 @@
     "terser-webpack-plugin": "5.x",
     "webpack": "5.x",
     "webpack-cli": "5.x",
-    "webpack-dev-server": "4.x"
+    "webpack-dev-server": "5.x"
   },
   "dependencies": {
     "angular": "1.x",
     "angular-leaflet-directive": "0.x",
     "angular-material": "1.x",
-    "leaflet": "1.7.x",
+    "leaflet": "1.9.x",
     "leaflet.markercluster": "1.5.x",
     "proj4": "2.x"
   }
