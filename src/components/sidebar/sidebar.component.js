@@ -83,10 +83,18 @@ function controller(
     navigator.geolocation.getCurrentPosition((position) => {
       // map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
       // console.log('pos:', position.coords);
+
+      // zoom in, but only if zoomed out a lot
+      const minZoom = 14;
+      let zoom = minZoom;
+      if (vm.map.center.zoom > minZoom) {
+        zoom = vm.map.center.zoom;
+      }
+      // set center on the map scope
       vm.map.center = {
         lat: parseFloat(position.coords.latitude),
         lng: parseFloat(position.coords.longitude),
-        zoom: 14
+        zoom
       };
       // marker
       mapService.userPositionMarker(vm.map.center.lat, vm.map.center.lng);
