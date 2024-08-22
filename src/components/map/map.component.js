@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable angular/typecheck-string */
 /* eslint-disable angular/typecheck-object */
 /* global L */
@@ -79,9 +80,13 @@ function controller(
     }, 100);
 
     $scope.$on("leafletDirectiveMarker.click", (event, args) => {
-      vm.map.highlight = args.model.data;
+      const element = args.model.data;
+      vm.map.highlight = element; // allow watching and using selected monument in other components
+    
+      // dot under current marker
+      mapService.selectMarker(element.lat, element.lon);
     });
-
+    
     $scope.$on("centerUrlHash", (event, centerHash) => {
       const old = $location.search();
       $location.search(angular.extend(old, { c: centerHash }));
@@ -277,19 +282,27 @@ function controller(
     return bHasImage ? -1 : 0;
   }
 
+  /**
+   * Create data for an angular map marker.
+   * 
+   * Note that although this creates `L.marker` the object is different.
+   * 
+   * @param {Object} element Monument data.
+   * @returns Angular marker object.
+   */
   function getMarker(element) {
     const iconOptions = {type:0};
     if (element.type === 'missing') {
       iconOptions.type = 1;
     }
-    const data = {
+    const marker = {
       data: element,
       lat: element.lat,
       lng: element.lon,
       layer: element.type === 'missing' ? "pinsMissing" : "pins",
       icon: mapService.getMapIcon(iconOptions),
     };
-    return data;
+    return marker;
   }
 }
 

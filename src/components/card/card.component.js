@@ -148,6 +148,9 @@ function controller(
         lng: vm.data.lon,
         zoom: vm.map.center.zoom < 17 ? 17 : vm.map.center.zoom
       };
+      // dot under current marker
+      const element = vm.data;
+      mapService.selectMarker(element.lat, element.lon);
     });
   }
 

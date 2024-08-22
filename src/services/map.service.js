@@ -6,6 +6,29 @@ import "../images/marker-shadow.png";
 
 const gdosApiUrl = "http://sdi.gdos.gov.pl/wms";
 
+// actual leaflet object
+let leafletMap = {};
+L.Map.addInitHook(function initLeafletMap() {
+  leafletMap = this;
+});
+
+let lastSelectedMarker = false;
+/**
+ * Place dot under currently selected marker (monument).
+ */
+function selectMarker(lat, lon) {
+  // dot under current marker
+  if (lastSelectedMarker) {
+    leafletMap.removeLayer(lastSelectedMarker);
+  }
+  lastSelectedMarker = L.circleMarker([lat, lon], {
+    radius: 10, // L.circleMarker makes this radius constant (L.circle is relative)
+    color: '#FFD700', // golden color
+    fillColor: '#000000',
+    fillOpacity: 0.5
+  }).addTo(leafletMap);
+}
+
 const MapService = versionService => {
   const map = getMapInstance({ forceMapState: false });
 
@@ -13,6 +36,7 @@ const MapService = versionService => {
     clearMarkers,
     getMap: () => map,
     getMapIcon,
+    selectMarker,
     showNature
   };
 
