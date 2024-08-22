@@ -45,8 +45,20 @@ Preferably roll out to a test folder first: `/data/project/zabytki/public_html/_
 Step 4: Final.
 Delete the `assets` folder in `public_html` and upload the new files to `public_html`.
 
+Important code points
+----------------------------------------
+`src\services\data.service.js`
+  - function getMonuments() -- Contains SPARQL (WD query).
+`src\components\card\card.html`
+  - The monument card on the sidebar.
+`src\components\map\map.component.js`
+  - function getMonuments() -- Final loop to create markers on the map.
+  - function transformMonuments() -- Transforms API data for the card component.
+`src\services\text.service.js`
+  - Translations (i18n).
+
 Map changes
---------------------
+----------------------------------------
 
 The map is based on [Leaflet library](https://leafletjs.com/), but there's a catch: it's an Angular Leaflet component, not a standard Leaflet instance.
 This means that most operations are not performed on a Leaflet instance using Leaflet methods, but rather on the Angular state.
