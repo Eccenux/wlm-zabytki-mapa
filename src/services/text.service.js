@@ -1,3 +1,26 @@
+/* global navigator */
+/**
+ * I18n service.
+ * 
+ * User switch:
+ * http://localhost/wlm/#!?userlang=de&c=50.0648:19.9424:13
+ * 
+ * Typical usage in a component.js (expose translations to a template):
+ * ```js
+  function controller(
+    ...
+    textService,
+  ) {
+    ...
+    vm.text = textService.getTexts();
+ * ```
+ * Typical usage of a translation in a template:
+ * ```html
+  {{ ::$ctrl.text.CARD_MORE_INFO }}
+ * ```
+ * 
+ * @param {angular.ILocationProvider} $location 
+ */
 const TextService = $location => {
   const texts = {
     pl: {
@@ -77,6 +100,45 @@ const TextService = $location => {
       WIKIMEDIA_COMMONS: "Wikimedia Commons",
       CLOSE: "Close",
       LOCATION_SEEMS_INVALID: "Location of this object seems invalid.",
+    },
+    de: {
+      INIT: "Karte wird geladen",
+      SEARCH_PLACEHOLDER: "Geben Sie den Ortsnamen ein, z.B. Wrocław",
+      HEADER_NATURE: "Natur",
+      HEADER_MONUMENTS: "Denkmäler",
+      HEADER_ART: "Kunst",
+      SHOW_CURRENT_LOCATION: "Aktuellen Standort anzeigen",
+      SIDEBAR_ZOOM_IN: "Zoomen Sie, um Objekte zu laden",
+      SIDEBAR_DRAG_SEARCH: "Denkmäler beim Verschieben der Karte laden",
+      SIDEBAR_CLICK_MAP_TO_GET: "Klicken Sie auf die Karte, um Objekte zu laden",
+      SIDEBAR_NO_OBJECTS: "Keine Objekte in diesem Bereich",
+      SIDEBAR_IMAGE_OUT_OF_LIST_LABEL: "Anderes Denkmal",
+      SIDEBAR_IMAGE_OUT_OF_LIST_TITLE: "Bild eines nicht gelisteten Denkmals senden",
+      CARD_NO_NAME: "Kein Name",
+      CARD_WAYSIDE_SHRINE: "Wegkapelle",
+      CARD_MEMORIAL: "Denkmal",
+      CARD_MONUMENT: "Monument",
+      CARD_WAYSIDE_CROSS: "Wegkreuz",
+      CARD_ARTWORK: "Kunstwerk",
+      CARD_NATURE_RESERVE: "Naturschutzgebiet",
+      CARD_LANDSCAPE_PARK: "Landschaftspark",
+      CARD_1: "Vogelschutzgebiet",
+      CARD_2: "Besonderes Schutzgebiet",
+      CARD_NATIONAL_PARK: "Nationalpark",
+      CARD_3: "Natur- und Landschaftskomplex",
+      CARD_NATURE_MONUMENT: "Naturdenkmal",
+      CARD_MORE_INFO: "Mehr",
+      CARD_UPLOAD: "Hochladen",
+      ADDRESS: "Adresse",
+      LOCATION: "Standort",
+      SELECT_NAVIGATION_METHOD: "Wählen Sie eine Navigationsmethode:",
+      USE_ADDRESS: "Adresse verwenden",
+      USE_LOCATION: "Standort verwenden",
+      EXTERNAL_LINKS: "Externe Links:",
+      WIKIDATA: "Wikidata",
+      WIKIMEDIA_COMMONS: "Wikimedia Commons",
+      CLOSE: "Schließen",
+      LOCATION_SEEMS_INVALID: "Der Standort dieses Objekts scheint ungültig zu sein.",
     }
   };
 
@@ -92,8 +154,14 @@ const TextService = $location => {
     return texts[lang] ? texts[lang][text] : texts.en[text];
   }
 
-  function getTexts(code) {
-    const lang = code || $location.search().lang || "pl";
+  function getTexts() {
+    // browser = default
+    const search = $location.search();
+    let lang = search.userlang || search.lang || navigator.language;
+    // en as fallback
+    if (!(lang in texts)) {
+      lang = 'en';
+    }
     return texts[lang];
   }
 };

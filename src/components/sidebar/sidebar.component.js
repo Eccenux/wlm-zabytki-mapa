@@ -26,7 +26,7 @@ function controller(
 
   vm.highlight = null;
   vm.map = mapService.getMap();
-  vm.text = textService.getTexts($location.search().lang || "pl");
+  vm.text = textService.getTexts();
   vm.version = versionService.getVersion();
 
   vm.uploadExtra = uploadExtra;
