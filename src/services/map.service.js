@@ -29,6 +29,23 @@ function selectMarker(lat, lon) {
   }).addTo(leafletMap);
 }
 
+let lastUserMarker = false;
+/**
+ * Place a dot/marker for user's current position.
+ */
+function userPositionMarker(lat, lon) {
+  // dot under current marker
+  if (lastUserMarker) {
+    leafletMap.removeLayer(lastUserMarker);
+  }
+  lastUserMarker = L.circleMarker([lat, lon], {
+    radius: 7,
+    color: '#000000',
+    fillColor: '#FFD700',
+    fillOpacity: 0.5
+  }).addTo(leafletMap);
+}
+
 const MapService = versionService => {
   const map = getMapInstance({ forceMapState: false });
 
@@ -37,6 +54,7 @@ const MapService = versionService => {
     getMap: () => map,
     getMapIcon,
     selectMarker,
+    userPositionMarker,
     showNature
   };
 

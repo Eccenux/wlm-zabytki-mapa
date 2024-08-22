@@ -88,9 +88,13 @@ function controller(
         lng: parseFloat(position.coords.longitude),
         zoom: 14
       };
+      // marker
+      mapService.userPositionMarker(vm.map.center.lat, vm.map.center.lng);
+
       postionWaiting = false;
       $scope.$apply();
     }, (error) => {
+      // eslint-disable-next-line no-console, angular/log
       console.error(error);
       postionWaiting = false;
     });
