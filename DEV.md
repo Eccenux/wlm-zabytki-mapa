@@ -49,11 +49,14 @@ Important code points
 ----------------------------------------
 `src\services\data.service.js`
   - function getMonuments() -- Contains SPARQL (WD query).
+    
 `src\components\card\card.html`
   - The monument card on the sidebar.
+    
 `src\components\map\map.component.js`
   - function getMonuments() -- Final loop to create markers on the map.
   - function transformMonuments() -- Transforms API data for the card component.
+    
 `src\services\text.service.js`
   - Translations (i18n).
 
