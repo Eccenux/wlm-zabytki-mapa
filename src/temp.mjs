@@ -2,9 +2,7 @@
  *  Cookieless domain dla obrazków #32 (test)
  */
 
-/* eslint-disable angular/log */
 /* eslint-disable no-console */
-/* eslint-disable prefer-const */
 /* eslint-disable no-restricted-syntax */
 import { createHash } from 'node:crypto';
 
@@ -18,7 +16,7 @@ function md5Test() {
   const text = "Ala ma kota";
   const expected = "91162629d258a876ee994e9233b2ad87";
   const result = hash(text);
-  console.log(text, result, result==expected);
+  console.log(text, result, result===expected);
 }
 md5Test();
 

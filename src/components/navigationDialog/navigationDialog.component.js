@@ -66,7 +66,6 @@ function controller(
     const location = vm.location.replace(/\s+/, '');
     // Check if location is properly formatted
     if (!location || !/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(location)) {
-      // eslint-disable-next-line angular/log, no-console
       console.error('Invalid location format:', location);
       alert(vm.text.LOCATION_SEEMS_INVALID);
       return;

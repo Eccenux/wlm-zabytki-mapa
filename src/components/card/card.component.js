@@ -1,4 +1,3 @@
-/* eslint-disable prefer-destructuring */
 import "./card.scss";
 import template from "./card.html";
 

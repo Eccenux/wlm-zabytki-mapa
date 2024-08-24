@@ -1,7 +1,3 @@
-/* eslint-disable prefer-destructuring */
-/* eslint-disable no-console */
-/* eslint-disable angular/json-functions */
-/* eslint-disable angular/log */
 import proj4 from "proj4";
 import { downAccuracy, ceilAccuracy } from '../lib/MapHelpers';
 

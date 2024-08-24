@@ -102,7 +102,6 @@ function controller(
       postionWaiting = false;
       $scope.$apply();
     }, (error) => {
-      // eslint-disable-next-line no-console, angular/log
       console.error(error);
       postionWaiting = false;
     });

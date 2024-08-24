@@ -1,6 +1,3 @@
-/* eslint-disable prefer-destructuring */
-/* eslint-disable angular/typecheck-string */
-/* eslint-disable angular/typecheck-object */
 /* global L */
 import "./map.scss";
 import template from "./map.html";
