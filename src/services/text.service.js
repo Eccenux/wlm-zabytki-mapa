@@ -1,4 +1,3 @@
-/* eslint-disable angular/typecheck-array */
 /* global navigator */
 /**
  * I18n service.
@@ -158,14 +157,19 @@ const TextService = $location => {
   function getTexts() {
     // browser = default
     const search = $location.search();
-    let lang = search.uselang || search.userlang || search.lang || navigator.language;
-    // seems to work better on mobile (e.g. on Chrome on Polish Android: ['en-US', 'pl-PL', 'pl', 'en'])
-    if (Array.isArray(navigator.languages)) {
+    // from hashbang-url parameters:
+    let lang = search.uselang || search.userlang || search.lang || false;
+    // seems to work better on mobile (at least on Chrome on Polish Android: ['en-US', 'pl-PL', 'pl', 'en'])
+    if (!lang && Array.isArray(navigator.languages)) {
       if (navigator.languages.indexOf('pl') >= 0) {
         lang = 'pl';
       } else if (navigator.languages.indexOf('de') >= 0) {
         lang = 'de';
       }
+    }
+    // browser lang (note that navigator.language might be in extended form like: 'en-US', 'pl-PL')
+    if (!lang && Array.isArray(navigator.languages)) {
+      lang = navigator.language.replace(/-[a-z]+/ig, '');
     }
     // en as fallback
     if (!(lang in texts)) {

@@ -786,8 +786,9 @@
                     },
                     getTexts: function() {
                         const search = $location.search();
-                        let lang = search.uselang || search.userlang || search.lang || navigator.language;
-                        Array.isArray(navigator.languages) && (navigator.languages.indexOf("pl") >= 0 ? lang = "pl" : navigator.languages.indexOf("de") >= 0 && (lang = "de"));
+                        let lang = search.uselang || search.userlang || search.lang || !1;
+                        !lang && Array.isArray(navigator.languages) && (navigator.languages.indexOf("pl") >= 0 ? lang = "pl" : navigator.languages.indexOf("de") >= 0 && (lang = "de"));
+                        !lang && Array.isArray(navigator.languages) && (lang = navigator.language.replace(/-[a-z]+/gi, ""));
                         lang in texts || (lang = "en");
                         return texts[lang];
                     }
