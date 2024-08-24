@@ -74,6 +74,12 @@ ww-sidebar {
         box-sizing: border-box;
       }
     }
+
+    @media (max-width: 699px) {
+      md-switch, button {
+        font-size: 85%;
+      }
+    }
   }
 
   .ww-button-group {
