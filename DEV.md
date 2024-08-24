@@ -40,23 +40,25 @@ npm run build-prod
 ```
 
 Step 3: Staging.
-Preferably roll out to a test folder first: `/data/project/zabytki/public_html/_test`.
+Preferably roll out to a test folder first using [wlm-zabytki-deploy](https://github.com/Eccenux/wlm-zabytki-deploy/):
+https://zabytki.toolforge.org/_deploy_script/?type=test&token=.
 
 Step 4: Final.
-Delete the `assets` folder in `public_html` and upload the new files to `public_html`.
+Roll out to the main folder using [wlm-zabytki-deploy](https://github.com/Eccenux/wlm-zabytki-deploy/):
+https://zabytki.toolforge.org/_deploy_script/?type=main&token=.
 
 Important code points
 ----------------------------------------
 `src\services\data.service.js`
   - function getMonuments() -- Contains SPARQL (WD query).
-    
+
 `src\components\card\card.html`
   - The monument card on the sidebar.
-    
+
 `src\components\map\map.component.js`
   - function getMonuments() -- Final loop to create markers on the map.
   - function transformMonuments() -- Transforms API data for the card component.
-    
+
 `src\services\text.service.js`
   - Translations (i18n).
 
