@@ -39,7 +39,7 @@ function controller(
     const data = vm.monumentData;
     vm.address = data.town + (data.address ? `, ${data.address}` : '');
     vm.location = `${data.lat}, ${data.lon}`;
-    vm.commonsUrl = data.commonsCategory && `https://commons.wikimedia.org/wiki/Category:${encodeURIComponent(data.commonsCategory)}`;
+    vm.commonsUrl = data.category && `https://commons.wikimedia.org/wiki/Category:${encodeURIComponent(data.category)}`;
   }
 
   vm.getFormattedAddress = function() {

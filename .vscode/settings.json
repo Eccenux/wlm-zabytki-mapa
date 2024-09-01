@@ -3,6 +3,7 @@
         "package-lock.json": true,
         "yarn.lock": true,
         "app/**": true,
+        "app-prod/**": true,
 	},
 	"editor.detectIndentation": false,
 	"editor.tabSize": 2,

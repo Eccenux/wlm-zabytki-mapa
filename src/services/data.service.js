@@ -72,7 +72,11 @@ const DataService = ($http) => {
 
   /**
    * Load details from Wikidata.
-   * @param {String} wikidataId 
+   * 
+   * Note! For future use:
+   * Więcej danych po kliknięciu w zabytek #35 
+   * 
+   * @param {String} wikidataId Q-id
    */
   function getWikidataDetails(wikidataId) {
     const url = `https://www.wikidata.org/wiki/Special:EntityData/${wikidataId}.json`;
@@ -88,7 +92,7 @@ const DataService = ($http) => {
           inspireId: claims.P4115 && claims.P4115[0].mainsnak.datavalue.value,  // for zabytek.pl
           polishHeritageNumber: claims.P3424 && claims.P3424[0].mainsnak.datavalue.value, // for PDF
           buildDate: claims.P571 && claims.P571[0].mainsnak.datavalue.value.time, // of creation or establishment
-          commonsCategory: claims.P373 && claims.P373[0].mainsnak.datavalue.value,
+          category: claims.P373 && claims.P373[0].mainsnak.datavalue.value,
         };
         resolve(result);
       })
@@ -149,7 +153,7 @@ const DataService = ($http) => {
     */
     const query = `SELECT ?item ?itemLabel ?townLabel ?image 
       ?coord ?category ?townCategory ?adminCategory
-      ?address ?inspireId ?commonsCategory
+      ?address ?inspireId
     WHERE {
       SERVICE wikibase:box {
       ?item wdt:P625 ?coord .
@@ -166,7 +170,6 @@ const DataService = ($http) => {
       OPTIONAL { ?item wdt:P373 ?category }
       OPTIONAL { ?item wdt:P6375 ?address. }
       OPTIONAL { ?item wdt:P4115 ?inspireId. }
-      OPTIONAL { ?item wdt:P373 ?commonsCategory. }
       SERVICE wikibase:label { bd:serviceParam wikibase:language "pl,en" }
     }
     LIMIT 2000`.replace(/ {2,}/g, " ");

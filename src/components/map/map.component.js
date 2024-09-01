@@ -231,15 +231,18 @@ function controller(
                 image: object.image
                   ? object.image.value.substring(51)
                   : undefined,
-                type: object.image ? 'done' : 'missing', // icon (marker) type
+                // icon (marker) type
+                type: object.image ? 'done' : 'missing',
                 town: object.townLabel ? object.townLabel.value : undefined,
                 address: object.address ? object.address.value : undefined,
                 inspireId: object.inspireId ? object.inspireId.value : undefined,
-                commonsCategory: object.commonsCategory ? object.commonsCategory.value : undefined,
+                // monumnet's category in Commons (P373 on Q)
                 category: object.category ? object.category.value : undefined,
+                // P373 of a town
                 category2: object.townCategory
                   ? object.townCategory.value
                   : undefined,
+                // P373 of an administrative region
                 category3: object.adminCategory
                   ? object.adminCategory.value
                   : undefined
