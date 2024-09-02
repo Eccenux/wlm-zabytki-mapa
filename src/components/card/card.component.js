@@ -115,8 +115,11 @@ function controller(
     }
 
     let url = uploadUrl;
-    url += "wlm-pl&descriptionlang=pl";
-    url += `&description=${encodeURIComponent(description)}&categories=${encodeURIComponent(categories)}&id=Q${vm.data.id}`;
+    // description/descriptionlang should be used when wikibase is disabled
+    // caption should be copied to description when wikibase is enabled
+    // https://commons.wikimedia.org/w/index.php?title=Campaign:wlm-pl&action=edit
+    url += "wlm-pl&captionlang=pl";
+    url += `&caption=${encodeURIComponent(description)}&categories=${encodeURIComponent(categories)}&id=Q${vm.data.id}`;
     url += `&lat=${encodeURIComponent(vm.data.lat)}&lon=${encodeURIComponent(vm.data.lon)}`;
     return url;
   }

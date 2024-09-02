@@ -1,6 +1,6 @@
 {
   "name": "wlm-zabytki-mapa",
-  "version": "2024.09.01",
+  "version": "2024.09.02",
   "private": true,
   "description": "",
   "main": "src/index.js",

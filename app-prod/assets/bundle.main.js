@@ -72,7 +72,7 @@
                             let categories = vm.data.category;
                             categories || (categories = `${vm.data.category2 || vm.data.category3 || ""}`, categories.length ? categories += "|Cultural heritage monuments in Poland" : categories = "Cultural heritage monuments in Poland");
                             let url = uploadUrl;
-                            return url += "wlm-pl&descriptionlang=pl", url += `&description=${encodeURIComponent(description)}&categories=${encodeURIComponent(categories)}&id=Q${vm.data.id}`, 
+                            return url += "wlm-pl&captionlang=pl", url += `&caption=${encodeURIComponent(description)}&categories=${encodeURIComponent(categories)}&id=Q${vm.data.id}`, 
                             url += `&lat=${encodeURIComponent(vm.data.lat)}&lon=${encodeURIComponent(vm.data.lon)}`, 
                             url;
                         }() : "nature" === vm.version() ? url = getNatureUploadUrl() : "art" === vm.version() && (url = getArtUploadUrl()), 
