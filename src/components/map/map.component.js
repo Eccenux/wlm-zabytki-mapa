@@ -245,7 +245,11 @@ function controller(
                 // P373 of an administrative region
                 category3: object.adminCategory
                   ? object.adminCategory.value
-                  : undefined
+                  : undefined,
+                // e.g. https://www.wikidata.org/wiki/Q54150#P373
+                voivodeship: (object.adminCategory && object.adminCategory.value.includes(' Voivodeship'))
+                  ? object.adminCategory.value //.replace(' Voivodeship', '')
+                  : undefined,
               };
             })
             // filter out duplicates (same Q)

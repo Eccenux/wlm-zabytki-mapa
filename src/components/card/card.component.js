@@ -126,6 +126,7 @@ function controller(
     url += campaign + "&captionlang=pl";
     url += `&caption=${encodeURIComponent(description)}&categories=${encodeURIComponent(categories)}`;
     url += `&fields[0]=Q${vm.data.id}`;
+    if (vm.data.voivodeship) url += `&fields[1]=${encodeURIComponent(vm.data.voivodeship)}`;
     url += `&lat=${encodeURIComponent(vm.data.lat)}&lon=${encodeURIComponent(vm.data.lon)}`;
     return url;
   }
