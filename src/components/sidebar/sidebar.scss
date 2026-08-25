@@ -1,4 +1,4 @@
-@import "../../styles/responsive";
+@use "../../styles/responsive";
 
 ww-sidebar {
   position: relative;
@@ -43,7 +43,7 @@ ww-sidebar {
     box-sizing: border-box;
     display: flex;
     gap: .5em;
-    @include x-small {
+    @include responsive.x-small {
       gap: 0;
     }
     flex-direction: column;

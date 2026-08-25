@@ -7,5 +7,14 @@
 	},
 	"editor.detectIndentation": false,
 	"editor.tabSize": 2,
-	"editor.insertSpaces": true
+  "editor.insertSpaces": true,
+  "spellright.language": [
+    "en",
+    "pl"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext"
+  ]
 }

@@ -1,4 +1,4 @@
-@import "../../styles/responsive";
+@use "../../styles/responsive";
 
 ww-header {
   .ww-header__main {
@@ -93,7 +93,7 @@ ww-header {
       color: black;
     }
 
-    @include x-small {
+    @include responsive.x-small {
       font-size: 18px;
     }
   }
@@ -116,7 +116,7 @@ ww-header {
     background: #eee;
     color: #1d1d1d;
 
-    @include x-small {
+    @include responsive.x-small {
       max-width: 100%;
     }
   }
@@ -140,7 +140,7 @@ ww-header {
     font-weight: 600;
     font-size: 18px;
 
-    @include x-small {
+    @include responsive.x-small {
       font-size: 14px;
     }
   }

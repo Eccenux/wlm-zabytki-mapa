@@ -31,7 +31,7 @@ Make sure the build still works after your changes.
 
 Release
 -------
-Step 1: Update version in package.json (used for cache busting).
+Step 1: Update version in `package.json` (used for cache busting).
 
 Step 2: Run updates and build.
 ```bash

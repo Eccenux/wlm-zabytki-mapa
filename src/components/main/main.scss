@@ -1,4 +1,4 @@
-@import "../../styles/responsive";
+@use "../../styles/responsive";
 
 ww-main {
   display: flex;
@@ -19,7 +19,7 @@ ww-main {
       height: 100%;
     }
   }
-  @include x-small {
+  @include responsive.x-small {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 16em;
     grid-template-areas:

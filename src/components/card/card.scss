@@ -1,4 +1,4 @@
-@import "../../styles/responsive";
+@use "../../styles/responsive";
 @import "card.css";
 
 ww-card {
@@ -45,7 +45,7 @@ ww-card {
         max-height: 120px;
       }
 
-      @include x-small {
+      @include responsive.x-small {
         width: 80px;
         height: 80px;
         .md-media-sm,
@@ -60,7 +60,7 @@ ww-card {
       font-weight: 600;
       font-size: 18px;
 
-      @include x-small {
+      @include responsive.x-small {
         font-size: 16px;
       }
     }
