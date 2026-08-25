@@ -115,11 +115,17 @@ function controller(
     }
 
     let url = uploadUrl;
-    // description/descriptionlang should be used when wikibase is disabled
-    // caption should be copied to description when wikibase is enabled
-    // https://commons.wikimedia.org/w/index.php?title=Campaign:wlm-pl&action=edit
-    url += "wlm-pl&captionlang=pl";
-    url += `&caption=${encodeURIComponent(description)}&categories=${encodeURIComponent(categories)}&id=Q${vm.data.id}`;
+    /**
+     * URL notes:
+     * - description/descriptionlang should be used when wikibase is disabled
+     * - caption should be copied to description when wikibase is enabled
+     * - fields order is imporant, make sure the order things we want to pre-fill
+     * https://commons.wikimedia.org/w/index.php?title=Campaign:wlm-pl&action=edit
+     */
+    let campaign = location.pathname.startsWith('/_test') ? 'wlm-pl-test' : 'wlm-pl'; // test campaign on a test site
+    url += campaign + "&captionlang=pl";
+    url += `&caption=${encodeURIComponent(description)}&categories=${encodeURIComponent(categories)}`;
+    url += `&fields[0]=Q${vm.data.id}`;
     url += `&lat=${encodeURIComponent(vm.data.lat)}&lon=${encodeURIComponent(vm.data.lon)}`;
     return url;
   }
