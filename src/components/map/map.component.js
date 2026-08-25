@@ -247,8 +247,8 @@ function controller(
                   ? object.adminCategory.value
                   : undefined,
                 // e.g. https://www.wikidata.org/wiki/Q54150#P373
-                voivodeship: (object.adminCategory && object.adminCategory.value.includes(' Voivodeship'))
-                  ? object.adminCategory.value //.replace(' Voivodeship', '')
+                voivodeship: (object.stateCategory && object.stateCategory.value.includes(' Voivodeship'))
+                  ? object.stateCategory.value //.replace(' Voivodeship', '')
                   : undefined,
               };
             })

@@ -152,7 +152,7 @@ const DataService = ($http) => {
       Transformed data is shown as a list on `src\components\card\card.html`. 
     */
     const query = `SELECT ?item ?itemLabel ?townLabel ?image 
-      ?coord ?category ?townCategory ?adminCategory
+      ?coord ?category ?townCategory ?adminCategory ?stateCategory
       ?address ?inspireId
     WHERE {
       SERVICE wikibase:box {
@@ -163,6 +163,12 @@ const DataService = ($http) => {
       OPTIONAL { ?item wdt:P131 ?town . }
       OPTIONAL { ?item wdt:P131 ?town . ?town wdt:P373 ?townCategory }
       OPTIONAL { ?item wdt:P131 ?town . ?town wdt:P131 ?admin . ?admin wdt:P373 ?adminCategory }
+      OPTIONAL {
+        ?item wdt:P131 ?town . 
+        ?town (wdt:P131)* ?state . ?state wdt:P373 ?stateCategory
+        FILTER EXISTS { ?state wdt:P31 wd:Q150093 }
+        FILTER NOT EXISTS { ?state wdt:P576 [] }
+      }
       OPTIONAL { ?item wdt:P18 ?image . }
       ?item wdt:P1435 wd:Q29940414 .
       FILTER NOT EXISTS { ?item wdt:P31 wd:Q19860854 }
